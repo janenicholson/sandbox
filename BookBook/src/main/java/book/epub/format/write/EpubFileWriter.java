@@ -1,4 +1,4 @@
-package book.epub.write;
+package book.epub.format.write;
 
 import java.io.Closeable;
 import java.io.FileOutputStream;
@@ -10,7 +10,7 @@ import java.util.zip.ZipOutputStream;
 
 import book.epub.EpubFile;
 import book.epub.PersistableFile;
-import book.epub.metadata.EpubMimeTypeFile;
+import book.epub.format.EpubMimeTypeFile;
 
 public class EpubFileWriter implements Closeable, Flushable {
 	private final ZipOutputStream out;

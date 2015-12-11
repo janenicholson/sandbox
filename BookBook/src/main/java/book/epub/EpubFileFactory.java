@@ -4,8 +4,8 @@ import com.google.common.collect.Lists;
 
 import book.epub.content.EpubContentOpfFile;
 import book.epub.content.EpubNcxFile;
-import book.epub.metadata.EpubContainerFile;
-import book.epub.metadata.EpubMimeTypeFile;
+import book.epub.format.EpubContainerFile;
+import book.epub.format.EpubMimeTypeFile;
 
 public class EpubFileFactory {
 	public static EpubFile create() {

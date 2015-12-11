@@ -1,4 +1,4 @@
-package book.epub.metadata;
+package book.epub.format;
 
 import java.util.Collections;
 import java.util.List;

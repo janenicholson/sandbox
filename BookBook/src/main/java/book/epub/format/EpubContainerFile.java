@@ -1,4 +1,4 @@
-package book.epub.metadata;
+package book.epub.format;
 
 import book.epub.PersistableFile;
 import lombok.Getter;

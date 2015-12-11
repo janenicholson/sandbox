@@ -4,8 +4,8 @@ import java.util.List;
 
 import book.epub.content.EpubContentOpfFile;
 import book.epub.content.EpubNcxFile;
-import book.epub.metadata.EpubContainerFile;
-import book.epub.metadata.EpubMimeTypeFile;
+import book.epub.format.EpubContainerFile;
+import book.epub.format.EpubMimeTypeFile;
 import lombok.Data;
 import lombok.Getter;
 

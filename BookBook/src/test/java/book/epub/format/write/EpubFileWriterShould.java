@@ -1,4 +1,4 @@
-package book.epub.write;
+package book.epub.format.write;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -13,6 +13,7 @@ import org.junit.Test;
 import com.adobe.epubcheck.api.EpubCheck;
 
 import book.epub.EpubFileFactory;
+import book.epub.format.write.EpubFileWriter;
 
 public class EpubFileWriterShould {
 

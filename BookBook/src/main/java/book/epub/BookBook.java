@@ -1,11 +1,11 @@
-package book.epub.write;
+package book.epub;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipFile;
 
-import book.epub.EpubFileFactory;
+import book.epub.format.write.EpubFileWriter;
 
 public class BookBook {
 
