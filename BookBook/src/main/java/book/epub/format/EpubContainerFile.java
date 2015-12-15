@@ -5,15 +5,12 @@ import lombok.Getter;
 
 public class EpubContainerFile implements PersistableFile {
 	@Getter private final String fileName = "META-INF/container.xml";
+	private final EpubContainerElement data = new EpubContainerElement();
 
 	@Override
 	public byte[] getContent() {
 		StringBuffer sb = new StringBuffer("<?xml version=\"1.0\"?>\n");
-		sb.append("<container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n");
-		sb.append("<rootfiles>\n");
-		sb.append("<rootfile full-path=\"OEBPS/content.opf\" media-type=\"application/oebps-package+xml\"/>\n");
-		sb.append("</rootfiles>\n");
-		sb.append("</container>\n");
+		sb.append(data.getContent());
 		return sb.toString().getBytes();
 	}
 }
