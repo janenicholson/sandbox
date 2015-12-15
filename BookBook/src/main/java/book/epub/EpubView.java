@@ -2,15 +2,15 @@ package book.epub;
 
 import java.util.List;
 
-import book.epub.content.EpubContentOpfFile;
-import book.epub.content.EpubNcxFile;
 import book.epub.format.EpubContainerFile;
+import book.epub.format.EpubContentOpfFile;
 import book.epub.format.EpubMimeTypeFile;
+import book.epub.format.EpubNcxFile;
 import lombok.Data;
 import lombok.Getter;
 
 @Data
-public class EpubFile {
+public class EpubView {
 	@Getter private final EpubMimeTypeFile mimeType;
 	@Getter private final EpubContainerFile containerFile;
 	@Getter private final EpubContentOpfFile contentOpfFile;

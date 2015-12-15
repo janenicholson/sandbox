@@ -8,7 +8,7 @@ import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import book.epub.EpubFile;
+import book.epub.EpubView;
 import book.epub.PersistableFile;
 import book.epub.format.EpubMimeTypeFile;
 
@@ -19,7 +19,7 @@ public class EpubFileWriter implements Closeable, Flushable {
 		this.out = new ZipOutputStream(out);
 	}
 
-	public void write(EpubFile epub) throws IOException {
+	public void write(EpubView epub) throws IOException {
 		addMimeType(epub.getMimeType());
 		addContent(epub.getContainerFile());
 		addContent(epub.getContentOpfFile());

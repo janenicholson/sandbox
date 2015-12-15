@@ -1,4 +1,4 @@
-package book.epub.content;
+package book.epub.format;
 
 public class EpubContent {
 

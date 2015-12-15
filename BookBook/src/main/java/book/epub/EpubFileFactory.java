@@ -2,14 +2,14 @@ package book.epub;
 
 import com.google.common.collect.Lists;
 
-import book.epub.content.EpubContentOpfFile;
-import book.epub.content.EpubNcxFile;
 import book.epub.format.EpubContainerFile;
+import book.epub.format.EpubContentOpfFile;
 import book.epub.format.EpubMimeTypeFile;
+import book.epub.format.EpubNcxFile;
 
 public class EpubFileFactory {
-	public static EpubFile create() {
-		EpubFile epubFile = new EpubFile(new EpubMimeTypeFile(), new EpubContainerFile(), new EpubContentOpfFile(), new EpubNcxFile(), Lists.<PersistableFile>newArrayList(new PersistableFile() {
+	public static EpubView create(String id) {
+		EpubView epubFile = new EpubView(new EpubMimeTypeFile(), new EpubContainerFile(), new EpubContentOpfFile(), new EpubNcxFile(), Lists.<PersistableFile>newArrayList(new PersistableFile() {
 			@Override
 			public String getFileName() {
 				return "OEBPS/chapter1.html";

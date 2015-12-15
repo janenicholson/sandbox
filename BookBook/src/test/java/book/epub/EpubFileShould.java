@@ -9,7 +9,7 @@ public class EpubFileShould {
 
 	@Test
 	public void satisfy_equivalence_contract() {
-		EqualsVerifier.forClass(EpubFile.class).suppress(Warning.STRICT_INHERITANCE).verify();
+		EqualsVerifier.forClass(EpubView.class).suppress(Warning.STRICT_INHERITANCE).verify();
 	}
 
 }
