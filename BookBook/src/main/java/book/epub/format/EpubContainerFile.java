@@ -1,5 +1,6 @@
 package book.epub.format;
 
+import book.BookModel;
 import book.epub.PersistableFile;
 import lombok.Getter;
 
@@ -8,9 +9,9 @@ public class EpubContainerFile implements PersistableFile {
 	private final EpubContainerElement data = new EpubContainerElement();
 
 	@Override
-	public byte[] getContent() {
+	public byte[] formatContent(BookModel book) {
 		StringBuffer sb = new StringBuffer("<?xml version=\"1.0\"?>\n");
-		sb.append(data.getContent());
+		sb.append(data.formatContent(book));
 		return sb.toString().getBytes();
 	}
 }

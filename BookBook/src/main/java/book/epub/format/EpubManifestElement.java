@@ -1,7 +1,9 @@
 package book.epub.format;
 
+import book.BookModel;
+
 public class EpubManifestElement {
-	public String getContent() {
+	public String formatContent(BookModel book) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("  <manifest>\n");
 		sb.append("    <item href=\"toc.ncx\" id=\"tocid\" media-type=\"application/x-dtbncx+xml\"/>\n");

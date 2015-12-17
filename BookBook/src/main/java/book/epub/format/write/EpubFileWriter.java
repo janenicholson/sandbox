@@ -8,6 +8,7 @@ import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import book.BookModel;
 import book.epub.EpubView;
 import book.epub.PersistableFile;
 import book.epub.format.EpubMimeTypeFile;
@@ -19,17 +20,17 @@ public class EpubFileWriter implements Closeable, Flushable {
 		this.out = new ZipOutputStream(out);
 	}
 
-	public void write(EpubView epub) throws IOException {
+	public void write(EpubView epub, BookModel book) throws IOException {
 		addMimeType(epub.getMimeType());
-		addContent(epub.getContainerFile());
-		addContent(epub.getContentOpfFile());
-		addContent(epub.getNcxFile());
+		addContent(epub.getContainerFile(), book);
+		addContent(epub.getContentOpfFile(), book);
+		addContent(epub.getNcxFile(), book);
 		for (PersistableFile file : epub.getEpubData())
-			addContent(file);
+			addContent(file, book);
 	}
 
 	private void addMimeType(EpubMimeTypeFile mimeType) throws IOException {
-		addUncompressedZipEntry(mimeType.getFileName(), mimeType.getContent());
+		addUncompressedZipEntry(mimeType.getFileName(), mimeType.formatContent(null));
 	}
 
 	private void addUncompressedZipEntry(String fileName, byte[] content) throws IOException {
@@ -39,8 +40,8 @@ public class EpubFileWriter implements Closeable, Flushable {
 		out.closeEntry();
 	}
 	
-	private void addContent(PersistableFile file) throws IOException {
-		addZipEntry(file.getFileName(), file.getContent());
+	private void addContent(PersistableFile file, BookModel book) throws IOException {
+		addZipEntry(file.getFileName(), file.formatContent(book));
 	}
 
 	private void addZipEntry(String fileName, byte[] content) throws IOException {

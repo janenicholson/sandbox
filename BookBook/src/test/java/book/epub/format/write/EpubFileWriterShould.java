@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import com.adobe.epubcheck.api.EpubCheck;
 
+import book.BookModel;
 import book.epub.EpubFileFactory;
 import book.epub.format.write.EpubFileWriter;
 
@@ -24,7 +25,7 @@ public class EpubFileWriterShould {
 		File file = File.createTempFile(id, ".epub");
 		EpubFileWriter epubWriter = new EpubFileWriter(new FileOutputStream(file));
 		try {
-			epubWriter.write(EpubFileFactory.create(id));
+			epubWriter.write(EpubFileFactory.create(id), new BookModel(id));
 			epubWriter.close();
 			assertThat(new EpubCheck(file).validate(), is(equalTo(true)));
 		} catch (IOException e) {

@@ -1,9 +1,13 @@
 package book.epub.format;
 
+import book.BookModel;
 import book.epub.PersistableFile;
 import lombok.Getter;
 
 public class EpubMimeTypeFile implements PersistableFile {
 	@Getter private final String fileName = "mimetype";
-	@Getter private final byte[] content = "application/epub+zip".getBytes();
+
+	public byte[] formatContent(BookModel book) {
+		return "application/epub+zip".getBytes();
+	}
 }

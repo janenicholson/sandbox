@@ -1,7 +1,9 @@
 package book.epub.format;
 
+import book.BookModel;
+
 public class EpubMetadataElement {
-	public String getContent() {
+	public String formatContent(BookModel book) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("  <metadata id=\"metadataid\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:opf=\"http://www.idpf.org/2007/opf\">\n");
 		sb.append("    <dc:identifier id=\"bookid\" opf:scheme=\"ISBN\">id</dc:identifier>\n");
