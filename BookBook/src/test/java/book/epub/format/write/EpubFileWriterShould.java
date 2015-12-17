@@ -25,7 +25,7 @@ public class EpubFileWriterShould {
 		File file = File.createTempFile(id, ".epub");
 		EpubFileWriter epubWriter = new EpubFileWriter(new FileOutputStream(file));
 		try {
-			epubWriter.write(EpubFileFactory.create(id), new BookModel(id));
+			epubWriter.write(EpubFileFactory.create(id), new BookModel("X" + id));
 			epubWriter.close();
 			assertThat(new EpubCheck(file).validate(), is(equalTo(true)));
 		} catch (IOException e) {

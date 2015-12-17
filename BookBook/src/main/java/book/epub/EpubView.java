@@ -15,5 +15,5 @@ public class EpubView {
 	@Getter private final EpubContainerFile containerFile;
 	@Getter private final EpubContentOpfFile contentOpfFile;
 	@Getter private final EpubNcxFile ncxFile;
-	@Getter private final List<PersistableFile> epubData;
+	@Getter private final List<PersistableContentFile> epubData;
 }

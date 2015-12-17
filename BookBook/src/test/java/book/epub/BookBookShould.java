@@ -19,7 +19,7 @@ public class BookBookShould {
 	@Test
 	public void create_a_valid_epub_file() throws IOException {
 		BookBook application = new BookBook();
-		File epubFile = application.createEpub(UUID.randomUUID().toString());
+		File epubFile = application.createEpub("X"+UUID.randomUUID().toString());
 		EpubCheck checker = new EpubCheck(epubFile);
 		assertThat(checker.validate(), is(equalTo(true)));
 	}

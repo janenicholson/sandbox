@@ -11,10 +11,10 @@ public class BookController {
 	}
 
 	public void addContent(Object content) {
-		model.getSections().add(transform(content));
+		model.getBookSections().add(transform(content));
 	}
 
 	private BookSection transform(Object content) {
-		return new BookSection();
+		return new BookSection("chapter1", "Chapter One");
 	}
 }
