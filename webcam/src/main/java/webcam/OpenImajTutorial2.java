@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.connectedcomponent.GreyscaleConnectedComponentLabeler;
 import org.openimaj.image.pixel.ConnectedComponent;
+import org.openimaj.image.processor.PrimitivePixelProcessor;
 import org.openimaj.ml.clustering.FloatCentroidsResult;
 import org.openimaj.ml.clustering.assignment.HardAssigner;
 import org.openimaj.ml.clustering.kmeans.FloatKMeans;
@@ -31,8 +32,6 @@ public class OpenImajTutorial2 {
 	private MBFImage clusteredInput;
 	private MBFImage output;
 
-	private FloatCentroidsResult centroids;
-
 	public void run() {
 		try {
 			input = readMBF(OPEN_IMAJ_SUPPLIED.toURL());
@@ -41,9 +40,9 @@ public class OpenImajTutorial2 {
 			convertedInput = convert(input, CIE_Lab);
 			SECONDS.sleep(1);
 			display(convertedInput, window);
-			centroids = cluster();
-			reportCentroids();
-			assignCentroids();
+			FloatCentroidsResult centroids = cluster();
+			reportCentroids(centroids);
+			assignCentroids(centroids);
 			SECONDS.sleep(1);
 			display(clusteredInput, window);
 			connectComponents();
@@ -64,22 +63,15 @@ public class OpenImajTutorial2 {
 		return cluster.cluster(convertedInput.getPixelVectorNative(new float[convertedInput.getWidth() * convertedInput.getHeight()][3]));
 	}
 
-	private void reportCentroids() {
+	private void reportCentroids(FloatCentroidsResult centroids) {
 		for (float[] fs : centroids.centroids) {
 			System.out.println(Arrays.toString(fs));
 		}
 	}
 
-	private void assignCentroids() {
+	private void assignCentroids(FloatCentroidsResult centroids) {
 		clusteredInput = convertedInput.clone();
-		HardAssigner<float[], ?, ?> assigner = centroids.defaultHardAssigner();
-		for (int y = 0; y < clusteredInput.getHeight(); y++) {
-			for (int x = 0; x < clusteredInput.getWidth(); x++) {
-				float[] pixel = clusteredInput.getPixelNative(x, y);
-				int centroid = assigner.assign(pixel);
-				clusteredInput.setPixelNative(x, y, centroids.centroids[centroid]);
-			}
-		}
+		clusteredInput.processInplace(new Centroider(centroids));
 	}
 
 	private void connectComponents() {
@@ -93,4 +85,18 @@ public class OpenImajTutorial2 {
 		}
 	}
 
+	private static class Centroider extends PrimitivePixelProcessor {
+		FloatCentroidsResult centroids;
+		private HardAssigner<float[], ?, ?> assigner;
+
+		public Centroider(FloatCentroidsResult centroids) {
+			this.centroids = centroids;
+			this.assigner = centroids.defaultHardAssigner();
+		}
+
+		@Override
+		public float[] processPixel(float[] pixel) {
+			return centroids.centroids[assigner.assign(pixel)];
+		}
+	}
 }
