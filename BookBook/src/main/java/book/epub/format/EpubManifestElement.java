@@ -1,9 +1,19 @@
 package book.epub.format;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import book.BookModel;
 import book.BookSection;
+import lombok.Getter;
+import xml.PersistableAttribute;
+import xml.PersistableElement;
 
-public class EpubManifestElement {
+public class EpubManifestElement extends PersistableElement {
+	@Getter private final String name = "manifest";
+	@Getter private final List<PersistableAttribute> attributes = Lists.newArrayList();
+	@Getter private final List<PersistableElement> children = Lists.newArrayList();
 	public String formatContent(BookModel book) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("  <manifest>\n");

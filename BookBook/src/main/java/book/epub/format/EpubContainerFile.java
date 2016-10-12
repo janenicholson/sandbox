@@ -10,8 +10,6 @@ public class EpubContainerFile implements PersistableFile {
 
 	@Override
 	public byte[] formatContent(BookModel book) {
-		StringBuffer sb = new StringBuffer("<?xml version=\"1.0\"?>\n");
-		sb.append(data.formatContent(book));
-		return sb.toString().getBytes();
+		return data.formatContent(book).getBytes();
 	}
 }
