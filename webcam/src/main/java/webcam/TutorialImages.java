@@ -1,5 +1,7 @@
 package webcam;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 import java.net.URI;
 
 public class TutorialImages {
@@ -8,4 +10,13 @@ public class TutorialImages {
 	public static final URI OPEN_IMAJ_HISTOGRAM_BEACH = URI.create("http://users.ecs.soton.ac.uk/dpd/projects/openimaj/tutorial/hist1.jpg");
 	public static final URI OPEN_IMAJ_HISTOGRAM_SHORE = URI.create("http://users.ecs.soton.ac.uk/dpd/projects/openimaj/tutorial/hist2.jpg");
 	public static final URI OPEN_IMAJ_HISTOGRAM_MOON = URI.create("http://users.ecs.soton.ac.uk/dpd/projects/openimaj/tutorial/hist3.jpg");
+	public static final URI OPEN_IMAJ_QUERY = URI.create("http://static.openimaj.org/media/tutorial/query.jpg");
+	public static final URI OPEN_IMAJ_TARGET = URI.create("http://static.openimaj.org/media/tutorial/target.jpg");
+
+	public static void nap() {
+		try {
+			SECONDS.sleep(3);
+		} catch (InterruptedException e) {
+		}
+	}
 }
