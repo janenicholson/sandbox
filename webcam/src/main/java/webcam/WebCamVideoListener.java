@@ -4,9 +4,12 @@ import org.openimaj.image.MBFImage;
 import org.openimaj.video.VideoDisplay;
 import org.openimaj.video.VideoDisplayListener;
 
+import lombok.Getter;
+
 public class WebCamVideoListener implements VideoDisplayListener<MBFImage> {
 
-	private MBFImage last;
+	@Getter private MBFImage snapshot;
+	@Getter private MBFImage diff;
 
 	@Override
 	public void afterUpdate(VideoDisplay<MBFImage> display) {
@@ -15,10 +18,10 @@ public class WebCamVideoListener implements VideoDisplayListener<MBFImage> {
 	@Override
 	public void beforeUpdate(MBFImage frame) {
 		MBFImage swap = frame.clone();
-		if (last != null) {
-			frame.subtractInplace(last).abs();
+		if (snapshot != null) {
+			diff = frame.subtract(snapshot).abs();
 		}
-		last = swap;
+		snapshot = swap;
 	}
 
 }
