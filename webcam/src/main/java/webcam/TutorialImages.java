@@ -13,6 +13,9 @@ public class TutorialImages {
 	public static final URI OPEN_IMAJ_QUERY = URI.create("http://static.openimaj.org/media/tutorial/query.jpg");
 	public static final URI OPEN_IMAJ_TARGET = URI.create("http://static.openimaj.org/media/tutorial/target.jpg");
 
+	public static final String IMAGE_PATH = "/Users/jane/Code/sandbox/webcam/config/images";
+	public static final String FACES_PATH = "zip:http://datasets.openimaj.org/att_faces.zip";
+
 	public static void nap() {
 		try {
 			SECONDS.sleep(3);
